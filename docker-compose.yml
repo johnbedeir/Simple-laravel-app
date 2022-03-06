@@ -1,25 +1,37 @@
 version: '3.8'
 services:
+  db:
+    container_name: db
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'laravel-db'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      MYSQL_PASSWORD: ""
+      MYSQL_USER: root
+    ports:
+      - "3306:3306"
+
   php-apache-environment:
-    container_name: php-apache
     build:
       context: .
-      dockerfile: Dockerfile
-    depends_on:
-      - db
+      dockerfile: ./Dockerfile
+    image: 'laravel-app'
     volumes:
       - . /var/www/html/
     ports:
-      - 8000:80
-  db:
-    container_name: db
-    image: mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
-      MYSQL_DATABASE: MYSQL_DATABASE
-      MYSQL_USER: MYSQL_USER
-      MYSQL_PASSWORD: MYSQL_PASSWORD
-      MYSQL_DB_DATABASE: laravel
+      - "8080:80"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - db
     ports:
-      - "9906:3306"
+      - 8000:80
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD:
+      MYSQL_ROOT_PASSWORD:
+    depends_on:
+      - db
+      - php-apache-environment
