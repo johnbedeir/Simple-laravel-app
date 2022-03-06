@@ -8,7 +8,6 @@ services:
       MYSQL_DATABASE: 'laravel-db'
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
       MYSQL_PASSWORD: ""
-      MYSQL_USER: root
     ports:
       - "3306:3306"
 
