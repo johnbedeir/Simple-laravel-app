@@ -1,26 +1,32 @@
-FROM tomsik68/xampp:7
+FROM php:7.4.1-apache
+
+USER root 
+
+WORKDIR /var/www/html
+
+COPY . /var/www/html/
+
+RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    zlib1g-dev \
+    libxml2-dev \
+    libzip-dev \ 
+    zip \
+    curl \
+    unzip \
+    && docker-php-ext-configure gd \
+    && docker-php-ext-install -j$(nproc) gd \
+    && docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install mysqli \
+    && docker-php-ext-install zip \
+    && docker-php-source delete
 
 
-RUN cd /opt/lampp/htdocs \
-    && rm -rf index.html
+COPY ./vhost.conf /etc/apache2/sites-available/000-default.conf
 
-COPY . /opt/lampp/htdocs
-# COPY composer.json /opt/lampp/htdocs
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# RUN apt-get update \
-#     && apt-get install php7.3 -y \
-#     && apt-get install php-xml -y \
-#     && apt-get install php-mbstring -y \
-#     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-#     && composer update \
-#     && apt-get install -y git-core curl build-essential openssl libssl-dev \
-#     && git clone https://github.com/nodejs/node.git \
-#     && cd node \
-#     && ./configure \
-#     && make \
-#     && sudo make install \
-#     && npm run dev
+RUN chown -R www-data:www-data /var/www/html \
+    && a2enmod rewrite
 
-# CMD npm install \
-#     && npm run dev 
 
