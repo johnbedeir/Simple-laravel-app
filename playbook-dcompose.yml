@@ -9,9 +9,6 @@
   - name: remove image built with dockercompose
     command: docker rmi laravel-app
     ignore_errors: yes
-    
-  - name: run composer update before build
-    command: composer update
 
   - name: build docker-compose
     command: docker-compose up -d 
