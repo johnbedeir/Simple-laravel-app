@@ -11,10 +11,7 @@
     ignore_errors: yes
 
   - name: build docker-compose
-    command: set -a
-
-  - name: build docker-compose
-    command: source .env
+    command: set -a && source .env
 
   - name: build docker-compose
     command: docker-compose up -d 
