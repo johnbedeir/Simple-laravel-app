@@ -6,7 +6,7 @@ WORKDIR /var/www/html
 
 COPY . /var/www/html/
 
-COPY ./.env /var/www/html/
+COPY .env /var/www/html/
 
 RUN apt-get update && apt-get install -y \
     libpng-dev \
