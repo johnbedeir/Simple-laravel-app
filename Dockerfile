@@ -6,8 +6,6 @@ WORKDIR /var/www/html
 
 COPY . /var/www/html/
 
-COPY .env /var/www/html/
-
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     zlib1g-dev \
@@ -31,5 +29,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite
 
+RUN set -a \
+    && source .env
 
 CMD composer update
