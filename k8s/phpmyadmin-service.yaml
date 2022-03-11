@@ -16,5 +16,4 @@ spec:
       targetPort: 80
   selector:
     io.kompose.service: phpmyadmin
-status:
-  LoadBalancer: {}
+status: {}
