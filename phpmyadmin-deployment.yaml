@@ -6,7 +6,7 @@ metadata:
 spec:
   selector:
       matchLabels:
-        app: phpmyadmin
+        name: phpmyadmin
   replicas: 1
   template:
     metadata:
