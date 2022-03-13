@@ -1,7 +1,7 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: laravel-app-img-deployment 
+  io.k8s.api.core.v1.Container: laravel-app-img-deployment 
   namespace: laravel-app
 spec:
   selector:
