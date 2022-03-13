@@ -1,0 +1,26 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: laravel-app-img-deployment 
+  namespace: laravel-app
+spec:
+  selector:
+    matchLabels:
+      app: laravel-app-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: laravel-app-db
+    spec:
+      containers:
+      - env:
+            - name: MYSQL_ALLOW_EMPTY_PASSWORD
+              value: "1"
+            - name: MYSQL_DATABASE
+              value: laravel-db
+            - name: MYSQL_PASSWORD
+      - name: laravel-app-db
+        image: mysql:5.7
+        ports:
+        - containerPort: 3306

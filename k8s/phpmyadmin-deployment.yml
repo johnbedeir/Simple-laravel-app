@@ -1,0 +1,20 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: laravel-app-img-deployment 
+  namespace: laravel-app
+spec:
+  selector:
+    matchLabels:
+      app: laravel-app-phpmyadmin
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: laravel-app-phpmyadmin
+    spec:
+      containers:
+      - name: laravel-app-db
+        image: phpmyadmin/phpmyadmin
+        ports:
+        - containerPort: 4000

@@ -1,0 +1,20 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: laravel-app-img-deployment 
+  namespace: laravel-app
+spec:
+  selector:
+    matchLabels:
+      app: laravel-app-php-apache
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: laravel-app-php-apache
+    spec:
+      containers:
+      - name: laravel-app-php-apache
+        image: triple3a/laravel-app
+        ports:
+        - containerPort: 5000
