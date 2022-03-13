@@ -11,7 +11,8 @@ spec:
   template:
     metadata:
       labels:
-        app: laravel-app-db
+        name: laravel-app-db
+        image: laravel-app-db
     spec:
       containers:
       - env:
