@@ -1,6 +1,7 @@
 #Install Java
 echo "--------------------Installing Java--------------------"
 sudo apt-get update -y
+sudo apt upgrade -y 
 sudo apt-get install openjdk-8-jdk -y
 #Install Jenkins 
 echo "--------------------Installing Jenkins--------------------"
@@ -66,6 +67,6 @@ sudo groupadd docker && sudo usermod -aG docker $USER && newgrp docker && sudo c
 #Start Minikube
 echo "--------------------Start Minikube--------------------"
 minikube start
-# Show Jenkins Admin Password 
-# echo "--------------------Jenkins Password--------------------"
-# sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+Show Jenkins Admin Password 
+echo "--------------------Jenkins Password--------------------"
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
