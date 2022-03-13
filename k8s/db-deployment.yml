@@ -14,13 +14,13 @@ spec:
         app: laravel-app-db
     spec:
       containers:
+      - name: laravel-app-db
+        image: mysql:5.7
+        ports:
+        - containerPort: 3306
       - env:
             - name: MYSQL_ALLOW_EMPTY_PASSWORD
               value: "1"
             - name: MYSQL_DATABASE
               value: laravel-db
             - name: MYSQL_PASSWORD
-      - name: laravel-app-db
-        image: mysql:5.7
-        ports:
-        - containerPort: 3306
