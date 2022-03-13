@@ -5,7 +5,7 @@ metadata:
   namespace: laravel-app
 spec:
   selector:
-    app: phpmyadmin
+    name: phpmyadmin
   type: LoadBalancer
   ports:
     - protocol: TCP
