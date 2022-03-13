@@ -14,6 +14,9 @@
     command: docker rmi triple3a/laravel-app
     ignore_errors: yes
     
+  - name: docker permission 
+    command: sudo chmod 777 /var/run/docker.sock 
+
   - name: build docker image from dockerfile
     command: docker build -t triple3a/laravel-app .  
 
@@ -22,3 +25,7 @@
 
   # - name: run container from image
   #   command: docker run -d --name laravel-container -p 5000:80 triple3a/laravel-app
+
+
+
+  
