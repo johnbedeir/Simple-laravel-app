@@ -12,7 +12,6 @@ spec:
     metadata:
       labels:
         name: laravel-app-db
-        image: laravel-app-db
     spec:
       containers:
       - env:
