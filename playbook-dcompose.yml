@@ -7,7 +7,15 @@
     ignore_errors: yes
   
   - name: remove image built with dockercompose
-    command: docker rmi laravel-app
+    command: docker rmi triple3a/laravel-app
+    ignore_errors: yes
+
+  - name: remove php-apache image
+    command: docker rmi php:7.4.1-apache mysql
+    ignore_errors: yes
+
+  - name: remove mysql image
+    command: docker rmi mysql:5.7
     ignore_errors: yes
 
   - name: build docker-compose
