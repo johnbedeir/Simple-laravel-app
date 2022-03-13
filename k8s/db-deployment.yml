@@ -1,8 +1,10 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: laravel-app-db
+  name: laravel-app-db-deployment
   namespace: laravel-app
+  labels:
+    app: laravel-app-db
 spec:
   selector:
     matchLabels:
